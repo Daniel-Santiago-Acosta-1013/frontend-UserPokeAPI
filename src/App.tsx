@@ -6,7 +6,7 @@ import FavoritesView from './views/FavoritesView';
 import './App.css';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token') ? true : false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
