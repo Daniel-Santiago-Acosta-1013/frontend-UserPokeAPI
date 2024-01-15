@@ -26,6 +26,7 @@ const FavoriteTable: React.FC<FavoriteTableProps> = ({ favorites, updateFavorite
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Nombre</th>
                         <th>Tipo</th>
                         <th>Acciones</th>
@@ -44,6 +45,7 @@ const FavoriteTable: React.FC<FavoriteTableProps> = ({ favorites, updateFavorite
                                 </td>
                             ) : (
                                 <>
+                                    <td><img src={pokemon.sprite} alt={pokemon.name} className="pokemon-sprite" /></td>
                                     <td>{pokemon.name}</td>
                                     <td>{pokemon.type}</td>
                                     <td>

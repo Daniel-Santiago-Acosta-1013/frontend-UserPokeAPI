@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../../../api/authService';
 import Swal from 'sweetalert2';
 import './register.scss';
@@ -31,6 +31,9 @@ const Register = () => {
                 <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 <button type="submit">Register</button>
+                <p className="switch-form">
+                    ¿Ya estás registrado? <Link to="/login">Iniciar sesión</Link>
+                </p>
             </form>
         </div>
     );

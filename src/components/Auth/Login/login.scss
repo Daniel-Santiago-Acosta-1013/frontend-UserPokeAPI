@@ -34,4 +34,17 @@
             }
         }
     }
+    .switch-form {
+        text-align: center;
+        margin-top: 15px;
+    
+        a {
+            color: #007bff;
+            text-decoration: none;
+    
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
