@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../../api/authService';
+import Swal from 'sweetalert2';
 import './register.scss';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             await registerUser(username, password);
+            navigate('/login');
         } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Error al registrar usuario',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
             console.error('Error al registrar', error);
         }
     };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../../api/authService';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 import './login.scss';
 
 interface LoginProps {
@@ -21,7 +23,23 @@ const Login = ({ setIsAuthenticated }: LoginProps) => {
             setIsAuthenticated(true);
             navigate('/favorites');
         } catch (error) {
-            console.error('Error en inicio de sesión', error);
+            if (axios.isAxiosError(error) && error.response) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.response.data.error || 'Error en inicio de sesión',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+                console.error('Error en inicio de sesión', error.response.data.error);
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Se produjo un error inesperado',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+                console.error('Error en inicio de sesión', error);
+            }
         }
     };
 
