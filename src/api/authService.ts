@@ -1,13 +1,11 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:3000/users';
+import axiosInstance from './axiosInstance';
 
 export const loginUser = async (username: string, password: string) => {
-    const response = await axios.post(`${API_URL}/login`, { username, password });
+    const response = await axiosInstance.post(`/login`, { username, password });
     return response.data;
 };
 
 export const registerUser = async (username: string, password: string) => {
-    const response = await axios.post(`${API_URL}/createUser`, { username, password });
+    const response = await axiosInstance.post(`/createUser`, { username, password });
     return response.data;
 };

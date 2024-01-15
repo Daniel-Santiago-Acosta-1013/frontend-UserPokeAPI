@@ -1,8 +1,6 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:3000/users';
+import axiosInstance from './axiosInstance';
 
 export const getAllUsers = async () => {
-    const response = await axios.get(`${API_URL}/getUsers`);
+    const response = await axiosInstance.get(`/getUsers`);
     return response.data;
 };

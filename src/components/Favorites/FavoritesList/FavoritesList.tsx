@@ -9,7 +9,7 @@ const FavoritesList = () => {
 
     const fetchFavorites = async () => {
         try {
-            const userId = '';
+            const userId = localStorage.getItem('userId') || '';
             const fetchedFavorites = await getFavoritePokemons(userId);
             setFavorites(fetchedFavorites);
         } catch (error) {

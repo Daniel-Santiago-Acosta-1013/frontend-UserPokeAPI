@@ -1,23 +1,21 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:3000/users';
+import axiosInstance from './axiosInstance';
 
 export const addFavoritePokemon = async (pokemonName: string) => {
-    const response = await axios.post(`${API_URL}/favorites`, { pokemonName });
+    const response = await axiosInstance.post(`/favorites`, { pokemonName });
     return response.data;
 };
 
 export const getFavoritePokemons = async (userId: string) => {
-    const response = await axios.get(`${API_URL}/favorites/${userId}`);
+    const response = await axiosInstance.get(`/favorites/${userId}`);
     return response.data;
 };
 
 export const removeFavoritePokemon = async (pokemonId: string) => {
-    const response = await axios.delete(`${API_URL}/favorites/${pokemonId}`);
+    const response = await axiosInstance.delete(`/favorites/${pokemonId}`);
     return response.data;
 };
 
 export const editFavoritePokemon = async (pokemonId: string, updateData: { name?: string, type?: string }) => {
-    const response = await axios.put(`${API_URL}/favorites/${pokemonId}`, updateData);
+    const response = await axiosInstance.put(`/favorites/${pokemonId}`, updateData);
     return response.data;
 };

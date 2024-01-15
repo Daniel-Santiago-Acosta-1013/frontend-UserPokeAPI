@@ -17,6 +17,7 @@ const Login = ({ setIsAuthenticated }: LoginProps) => {
         try {
             const data = await loginUser(username, password);
             localStorage.setItem('token', data.token);
+            localStorage.setItem('userId', data.userId);
             setIsAuthenticated(true);
             navigate('/favorites');
         } catch (error) {
