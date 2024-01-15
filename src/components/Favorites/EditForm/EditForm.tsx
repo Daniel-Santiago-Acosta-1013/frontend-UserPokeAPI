@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { IPokemon } from '../../../types';
 import { editFavoritePokemon } from '../../../api/pokemonService';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import './EditForm.scss';
 
 interface EditFormProps {
     pokemon: IPokemon;
@@ -17,7 +20,17 @@ const EditForm: React.FC<EditFormProps> = ({ pokemon, updateFavorites, onCancel 
         try {
             await editFavoritePokemon(pokemon._id, { name: newName, type: newType });
             updateFavorites();
+            window.location.reload();
         } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.response.data.error || 'Error al editar Pokémon favorito',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+                console.error('Error al editar Pokémon favorito', error.response.data.error);
+            }
             console.error('Error al editar Pokémon favorito', error);
         }
     };
