@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3000/users';
 
 export const addFavoritePokemon = async (pokemonName: string) => {
     const response = await axios.post(`${API_URL}/favorites`, { pokemonName });
